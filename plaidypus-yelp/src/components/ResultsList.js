@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
+import './ResultsList.css';
 
 export class SearchListItem extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     renderCategories () {
-
         const CategoryList = this.props.restaurant.categories.map((category) => {
             return (    
                 <div>{category.title}</div>
@@ -57,9 +53,7 @@ export class ResultsList extends Component {
 
     renderRestaurantInfo () {
         const RestaruantList = this.state.results.map((restaurant) => {
-            return (    
-                <SearchListItem restaurant={restaurant}/>
-            );
+            return ( <SearchListItem restaurant={restaurant}/> );
         });
 
         return(
@@ -80,22 +74,15 @@ export class ResultsList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <form onSubmit={(e) => this.handleFormSubmit(e)}>
-                    <label htmlFor = 'location' className = 'searchForm__label'>
-                        I am looking for restaurants near </label>
-                    <input type = 'text' id = 'location' placeholder = 'address, neighbourhood, city, province or postal code' value = {this.state.searchLocationQuery} onChange = {this.handleSearchChange}
-                        className = 'searchForm__input'
-                        />
-                    <button type = 'submit' className = 'searchForm__button'>Search</button>
+                    <label htmlFor = 'location'>I am looking for restaurants near </label>
+                    <input type = 'text' id = 'location' placeholder = 'address, neighbourhood, city, province or postal code' onChange = {this.handleSearchChange}/>
+                    <button type = 'submit'>Search</button>
                 </form>
                 <section className="RestuarantList">
                     {this.state.results.length ? this.renderRestaurantInfo() : this.renderEmptyState()}
-
-                    {/*conditional rendering for error state - when this.state.errorState is not true*/}
-                    {!!this.state.errorState &&
-                        <h1>{this.state.error}</h1>
-                    }   
+                    {!!this.state.errorState &&<h1>{this.state.error}</h1>}   
                 </section>
             </div>
         )
