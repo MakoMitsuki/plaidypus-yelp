@@ -6,13 +6,20 @@ export class SearchListItem extends Component {
     }
 
     renderCategories () {
-        return [];
+
+        const CategoryList = this.props.restaurant.categories.map((category) => {
+            return (    
+                <div>{category.title}</div>
+            );
+        });
+        return CategoryList;
     }
 
     render() {
         return (<div>
             <h2>{this.props.restaurant.name}</h2>
             <p>{this.props.restaurant.rating}</p>
+            {this.renderCategories()}
         </div>)
     }
 }
