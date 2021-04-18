@@ -1,0 +1,23 @@
+@import "~bootstrap/scss/bootstrap";
+
+.RestaurantList {
+    padding: 20px;
+    background-color: #f8f1d4;
+}
+
+.SearchListItem {
+    margin: 15px;
+    padding: 20px;
+    background-color: white;
+
+    h2 {
+        color: black;
+        &:hover{
+            color: #c43d16;
+        }
+    }
+
+    .categoryBadge {
+        margin-right: 10px;
+    }
+}

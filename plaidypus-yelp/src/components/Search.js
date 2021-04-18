@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RestaurantList } from './RestaurantList.js'
 import { RestaurantDetails } from './RestaurantDetails.js'
+import './Search.scss';
 
 import {
     BrowserRouter as Router,
@@ -46,8 +47,8 @@ export class Search extends Component {
 
     render() {
         return (
-            <div className="container">
-                <form onSubmit={(e) => this.handleFormSubmit(e)}>
+            <div className="Search_container">
+                <form className="Search_searchForm" onSubmit={(e) => this.handleFormSubmit(e)}>
                     <label htmlFor = 'location'>I am looking for restaurants near </label>
                     <input type = 'text' id = 'location' placeholder = 'address, neighbourhood, city, province or postal code' onChange = {this.handleSearchChange}/>
                     <button type = 'submit'>Search</button>

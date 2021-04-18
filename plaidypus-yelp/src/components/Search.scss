@@ -1,0 +1,29 @@
+@import "~bootstrap/scss/bootstrap";
+
+.Search {
+    display: flex;
+}
+
+.Search_container {
+    margin: 20px;
+    justify-content: center;
+}
+
+.Search_searchForm {
+    background-color: #edc596;
+    color: black;
+    padding: 20px;
+
+    input {
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 5px;
+    }
+
+    button {
+        background-color: #c43d16;
+        color: white;
+        border: none;
+        padding: 5px;
+    }
+}
