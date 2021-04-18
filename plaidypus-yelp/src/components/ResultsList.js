@@ -1,24 +1,13 @@
 import React, { Component } from 'react';
 import './ResultsList.css';
+import { RestaurantList } from './RestaurantList.js'
 
-export class SearchListItem extends Component {
-    renderCategories () {
-        const CategoryList = this.props.restaurant.categories.map((category) => {
-            return (    
-                <div>{category.title}</div>
-            );
-        });
-        return CategoryList;
-    }
-
-    render() {
-        return (<div>
-            <h2>{this.props.restaurant.name}</h2>
-            <p>{this.props.restaurant.rating}</p>
-            {this.renderCategories()}
-        </div>)
-    }
-}
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams
+  } from "react-router-dom";
 
 export class ResultsList extends Component {
 
@@ -45,22 +34,6 @@ export class ResultsList extends Component {
         })
     }
 
-    renderEmptyState () {
-        return (
-            <h2>`Hang tight! We are working on getting you the list of best brunch spots in your neighbourhood! `</h2>
-        )
-    }
-
-    renderRestaurantInfo () {
-        const RestaruantList = this.state.results.map((restaurant) => {
-            return ( <SearchListItem restaurant={restaurant}/> );
-        });
-
-        return(
-            <div>{RestaruantList}</div>
-        )
-    }
-
     handleSearchChange = (e) => {
         this.setState({
             searchLocationQuery: e.target.value
@@ -80,12 +53,27 @@ export class ResultsList extends Component {
                     <input type = 'text' id = 'location' placeholder = 'address, neighbourhood, city, province or postal code' onChange = {this.handleSearchChange}/>
                     <button type = 'submit'>Search</button>
                 </form>
-                <section className="RestuarantList">
-                    {this.state.results.length ? this.renderRestaurantInfo() : this.renderEmptyState()}
-                    {!!this.state.errorState &&<h1>{this.state.error}</h1>}   
-                </section>
+                <Router>
+                    <Switch>
+                        <Route path="/" children={<RestaurantList results={this.state.results} errorState={this.state.errorState} />} />
+                        <Route path="/:id" children={<Child />} />
+                    </Switch>
+                </Router>
+                
             </div>
         )
     }
 
+}
+  
+function Child() {
+    // We can use the `useParams` hook here to access
+    // the dynamic pieces of the URL.
+    let { id } = useParams();
+  
+    return (
+      <div>
+        <h3>ID: {id}</h3>
+      </div>
+    );
 }
