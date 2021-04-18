@@ -4,12 +4,13 @@ import { RestaurantList } from './RestaurantList.js'
 
 import {
     BrowserRouter as Router,
+    Link,
     Switch,
     Route,
     useParams
   } from "react-router-dom";
 
-export class ResultsList extends Component {
+export class Search extends Component {
 
     constructor(props) {
         super(props);
@@ -55,7 +56,7 @@ export class ResultsList extends Component {
                 </form>
                 <Router>
                     <Switch>
-                        <Route path="/" children={<RestaurantList results={this.state.results} errorState={this.state.errorState} />} />
+                        <Route exact path="/" children={<RestaurantList results={this.state.results} errorState={this.state.errorState} />} />
                         <Route path="/:id" children={<Child />} />
                     </Switch>
                 </Router>
@@ -74,6 +75,7 @@ function Child() {
     return (
       <div>
         <h3>ID: {id}</h3>
+        <Link to="/">Go Back</Link>
       </div>
     );
 }
