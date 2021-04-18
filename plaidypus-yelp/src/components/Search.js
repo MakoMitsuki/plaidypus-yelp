@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import './ResultsList.css';
 import { RestaurantList } from './RestaurantList.js'
+import { RestaurantDetails } from './RestaurantDetails.js'
 
 import {
     BrowserRouter as Router,
-    Link,
     Switch,
-    Route,
-    useParams
+    Route
   } from "react-router-dom";
 
 export class Search extends Component {
@@ -57,7 +55,7 @@ export class Search extends Component {
                 <Router>
                     <Switch>
                         <Route exact path="/" children={<RestaurantList results={this.state.results} errorState={this.state.errorState} />} />
-                        <Route path="/:id" children={<Child />} />
+                        <Route path="/:id" children={<RestaurantDetails />} />
                     </Switch>
                 </Router>
                 
@@ -65,17 +63,4 @@ export class Search extends Component {
         )
     }
 
-}
-  
-function Child() {
-    // We can use the `useParams` hook here to access
-    // the dynamic pieces of the URL.
-    let { id } = useParams();
-  
-    return (
-      <div>
-        <h3>ID: {id}</h3>
-        <Link to="/">Go Back</Link>
-      </div>
-    );
 }
